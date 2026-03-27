@@ -37,8 +37,9 @@ export default function LoginPage() {
         <div className="flex flex-col gap-5 w-full bg-slate-800/20 p-6 sm:p-8 rounded-3xl border border-slate-700/50 backdrop-blur-md">
           {/* Email */}
           <div className="flex flex-col gap-2">
-            <label className="text-slate-300 text-sm font-semibold px-1">Email Address</label>
+            <label htmlFor="email" className="text-slate-300 text-sm font-semibold px-1">Email Address</label>
             <input
+              id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -50,13 +51,14 @@ export default function LoginPage() {
           {/* Password */}
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center px-1">
-              <label className="text-slate-300 text-sm font-semibold">Password</label>
-              <a href="#" className="text-blue-400 text-sm font-bold hover:underline">
+              <label htmlFor="password" className="text-slate-300 text-sm font-semibold">Password</label>
+              <button type="button" className="text-blue-400 text-sm font-bold hover:underline bg-none border-none cursor-pointer p-0">
                 Forgot Password?
-              </a>
+              </button>
             </div>
             <div className="relative">
               <input
+                id="password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -113,9 +115,9 @@ export default function LoginPage() {
         {/* Create Account */}
         <p className="text-center text-sm font-medium text-slate-400">
           Don&apos;t have an account?{" "}
-          <a href="#" className="text-blue-400 font-bold hover:underline">
+          <button type="button" className="text-blue-400 font-bold hover:underline bg-none border-none cursor-pointer p-0">
             Create Account
-          </a>
+          </button>
         </p>
 
         {/* Security Badges */}
