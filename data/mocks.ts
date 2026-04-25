@@ -18,6 +18,12 @@ export const mockUser: User = {
   verificationLevel: "Verified User",
 };
 
+export const mockPremiumBonus = {
+  amount: 500,
+  description: "Instant premium credit",
+  smallPrint: "Demo only: no guard enforced",
+};
+
 export const mockPortfolio: PortfolioSummary = {
   totalValue: 42850.32,
   change24h: 1243.5,

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import DashboardHeader from "@/components/layout/DashboardHeader";
 import HeroBalanceCard from "@/components/dashboard/HeroBalanceCard";
@@ -7,8 +10,16 @@ import MarketOverview from "@/components/dashboard/MarketOverview";
 import AssetAllocationCard from "@/components/dashboard/AssetAllocationCard";
 import WeeklyFlowCard from "@/components/dashboard/WeeklyFlowCard";
 import ActivityHistoryCard from "@/components/dashboard/ActivityHistoryCard";
+import PremiumBonusCard from "@/components/dashboard/PremiumBonusCard";
+import { mockPremiumBonus } from "@/data/mocks";
 
 export default function DashboardPage() {
+  const [pendingBonus, setPendingBonus] = useState(0);
+
+  const handleBonusClaim = (bonus: number) => {
+    setPendingBonus((prev) => prev + bonus);
+  };
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-slate-950">
       <Sidebar />
@@ -18,11 +29,22 @@ export default function DashboardPage() {
           {/* Top grid: hero + profile + security */}
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12 lg:col-span-8">
-              <HeroBalanceCard />
+              <HeroBalanceCard extraBonus={pendingBonus} />
             </div>
             <div className="col-span-12 lg:col-span-4 space-y-6">
               <ProfileSummaryCard />
               <SecurityStatusCard />
+            </div>
+          </div>
+
+          {/* Premium bonus call-to-action */}
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-12 lg:col-span-6">
+              <PremiumBonusCard
+                bonusAmount={mockPremiumBonus.amount}
+                isPremium={false}
+                onClaim={handleBonusClaim}
+              />
             </div>
           </div>
 
