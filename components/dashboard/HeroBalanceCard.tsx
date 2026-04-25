@@ -16,15 +16,29 @@ const chartData = [
   { date: "Mar 15", value: 42850 },
 ];
 
-export default function HeroBalanceCard() {
+interface HeroBalanceCardProps {
+  extraBonus?: number;
+}
+
+export default function HeroBalanceCard({
+  extraBonus = 0,
+}: Readonly<HeroBalanceCardProps>) {
+  const totalValue = mockPortfolio.totalValue + extraBonus;
+  const bonusBadge = extraBonus > 0;
+
   return (
     <section className="bg-gradient-to-br from-blue-500/20 via-blue-500/5 to-transparent rounded-[2.5rem] p-8 border border-blue-500/20">
       <p className="text-slate-400 text-xs font-medium mb-2 uppercase tracking-widest">
         Total Portfolio Value
       </p>
-      <h2 className="text-white text-5xl font-extrabold tracking-tight mb-1">
-        {formatCurrency(mockPortfolio.totalValue)}
-      </h2>
+      <div className="flex items-baseline gap-3">
+        <h2 className="text-white text-5xl font-extrabold tracking-tight mb-1">
+          {formatCurrency(totalValue)}
+        </h2>
+        {bonusBadge && (
+          <span className="text-sm text-emerald-200 font-semibold">+{formatCurrency(extraBonus)} premium bonus</span>
+        )}
+      </div>
       <div className="flex items-center gap-2 mt-2 mb-6">
         <ArrowUpRight size={16} className="text-emerald-400" />
         <span className="text-emerald-400 text-sm font-semibold">
